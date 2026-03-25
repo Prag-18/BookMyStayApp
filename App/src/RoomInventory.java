@@ -16,31 +16,29 @@ public class RoomInventory {
         roomInventory.put("Suite", new Room(3, 750, 5000.0, 2));
     }
 
+    // ✅ Returns only availability (used by RoomSearchService)
+    public Map<String, Integer> getRoomAvailability() {
+        Map<String, Integer> availability = new HashMap<>();
+
+        for (Map.Entry<String, Room> entry : roomInventory.entrySet()) {
+            availability.put(entry.getKey(), entry.getValue().available);
+        }
+
+        return availability;
+    }
+
+    // ✅ Get availability of a specific room type
     public int getAvailability(String roomType) {
         return roomInventory.containsKey(roomType)
                 ? roomInventory.get(roomType).available
                 : 0;
     }
 
+    // ✅ Update availability
     public void updateAvailability(String roomType, int count) {
         if (roomInventory.containsKey(roomType)) {
             roomInventory.get(roomType).available = count;
         }
     }
 
-    public void displayInventory() {
-        System.out.println("Hotel Room Inventory Status\n");
-
-        for (Map.Entry<String, Room> entry : roomInventory.entrySet()) {
-            String type = entry.getKey();
-            Room room = entry.getValue();
-
-            System.out.println(type + " Room:");
-            System.out.println("Beds: " + room.beds);
-            System.out.println("Size: " + room.size + " sqft");
-            System.out.println("Price per night: " + room.price);
-            System.out.println("Available Rooms: " + room.available);
-            System.out.println();
-        }
-    }
 }
