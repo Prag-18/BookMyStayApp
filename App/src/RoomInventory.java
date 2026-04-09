@@ -7,9 +7,9 @@ public class RoomInventory {
 
     public RoomInventory() {
         inventory = new HashMap<>();
-        inventory.put("Single", 2);
-        inventory.put("Double", 1);
-        inventory.put("Suite", 1);
+        inventory.put("Single", 5);
+        inventory.put("Double", 3);
+        inventory.put("Suite", 2);
     }
 
     public boolean isAvailable(String roomType) {
@@ -17,6 +17,14 @@ public class RoomInventory {
     }
 
     public void decrement(String roomType) {
-        inventory.put(roomType, inventory.get(roomType) - 1);
+        inventory.put(roomType, inventory.getOrDefault(roomType, 0) - 1);
+    }
+
+    public void increment(String roomType) {
+        inventory.put(roomType, inventory.getOrDefault(roomType, 0) + 1);
+    }
+
+    public int getAvailability(String roomType) {
+        return inventory.getOrDefault(roomType, 0);
     }
 }
