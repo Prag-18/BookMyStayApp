@@ -12,6 +12,14 @@ public class RoomInventory {
         inventory.put("Suite", 2);
     }
 
+    public Map<String, Integer> getInventory() {
+        return inventory;
+    }
+
+    public void setInventory(Map<String, Integer> inventory) {
+        this.inventory = inventory;
+    }
+
     public boolean isAvailable(String roomType) {
         return inventory.getOrDefault(roomType, 0) > 0;
     }
@@ -29,9 +37,9 @@ public class RoomInventory {
     }
 
     public void display() {
-        System.out.println("\nRemaining Inventory:");
-        for (String key : inventory.keySet()) {
-            System.out.println(key + ": " + inventory.get(key));
+        System.out.println("\nCurrent Inventory:");
+        for (Map.Entry<String, Integer> entry : inventory.entrySet()) {
+            System.out.println(entry.getKey() + ": " + entry.getValue());
         }
     }
 }
