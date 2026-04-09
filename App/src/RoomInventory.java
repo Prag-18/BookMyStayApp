@@ -17,7 +17,7 @@ public class RoomInventory {
     }
 
     public void decrement(String roomType) {
-        inventory.put(roomType, inventory.getOrDefault(roomType, 0) - 1);
+        inventory.put(roomType, inventory.get(roomType) - 1);
     }
 
     public void increment(String roomType) {
@@ -26,5 +26,12 @@ public class RoomInventory {
 
     public int getAvailability(String roomType) {
         return inventory.getOrDefault(roomType, 0);
+    }
+
+    public void display() {
+        System.out.println("\nRemaining Inventory:");
+        for (String key : inventory.keySet()) {
+            System.out.println(key + ": " + inventory.get(key));
+        }
     }
 }
